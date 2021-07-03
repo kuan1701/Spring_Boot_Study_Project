@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+
 import java.util.Set;
 
 @Entity
@@ -54,7 +55,7 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		return isActive();
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -63,7 +64,7 @@ public class User implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return getRoles();
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
