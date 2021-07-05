@@ -1,5 +1,4 @@
 <#macro page>
-
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -7,10 +6,7 @@
         <title>Sweater</title>
     </head>
     <body>
-
     <#nested>
-
     </body>
     </html>
-
 </#macro>
