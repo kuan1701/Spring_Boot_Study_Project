@@ -4,6 +4,7 @@ import com.example.webproject.pms.model.Role;
 import com.example.webproject.pms.model.User;
 import com.example.webproject.pms.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +17,12 @@ public class RegistrationController {
 	
 
 	private final UserRepo userRepo;
+	private final PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public RegistrationController(UserRepo userRepo) {
+	public RegistrationController(UserRepo userRepo, PasswordEncoder passwordEncoder) {
 		this.userRepo = userRepo;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@GetMapping("/registration")
@@ -39,6 +42,7 @@ public class RegistrationController {
 		}
 		
 		user.setActive(true);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRoles(Collections.singleton(Role.USER));
 		userRepo.save(user);
 		
